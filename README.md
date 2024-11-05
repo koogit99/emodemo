@@ -7,6 +7,6 @@ making demo project with emo
 - https://jsonplaceholder.typicode.com/guide/
 - https://www.postman.com/
 - https://prettier.io/
-
+- https://github.com/tastejs/hacker-news-pwas/blob/master/docs/api.md
 
 
