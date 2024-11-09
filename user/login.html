@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>emodemo</title>
+    <script>
+      // https://codingbroker.tistory.com/62
+      function getUser() {
+        document.getElementById("userInfo").innerText = "";
+        console.log(document.getElementById("id").innerText);
+        if (!document.getElementById("id").innerText) {
+          // !는 not
+          alert("id 넣으세요");
+        }
+        const config = {
+          method: "get",
+        };
+        fetch("https://jsonplaceholder.typicode.com/users/1", config)
+          .then((response) => {
+            // console.log(response);
+            return response.json();
+          })
+          .then((data) => {
+            console.log("결과:", data);
+            const name = document.createElement("div");
+            const email = document.createElement("div");
+            const phone = document.createElement("div");
+            name.textContent = data.name;
+            email.textContent = data.email;
+            phone.textContent = data.phone;
+            const userInfo = document.getElementById("userInfo");
+            userInfo.appendChild(name);
+            userInfo.appendChild(email);
+            userInfo.appendChild(phone);
+          })
+          .catch((error) => console.log("fetch 에러!"));
+      }
+    </script>
+  </head>
+  <body>
+    <label for="id">ID:</label><br />
+    <input type="text" id="id" name="fname" /><br />
+    <label for="pw">PW:</label><br />
+    <input type="text" id="pw" name="lname" />
+
+    <button onclick="getUser()">Login</button>
+    <div id="userInfo"></div>
+  </body>
+</html>
