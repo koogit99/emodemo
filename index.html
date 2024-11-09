@@ -2,47 +2,33 @@
 <html>
   <head>
     <title>emodemo</title>
-    <link rel="stylesheet" type="text/css" href="./common/style.css"/>
-    <!-- <script src="./common/include.js" defer></script> -->
     <script type="text/javascript">
+      /*
+        페이지 이동 샘플 코드
+        document.location.href = "http://naver.com";
+        document.location.href = "home.html";
+        document.location.href = "./home.html";
+        document.location.href = "../home.html";
+
+        index.html 페이지가 로드되는 시점에 home.html 페이지 이동하기 위해서 아래 2개 function 중 선택 가능!
+        참고로 DOMContentLoaded 가 window.onload 보다 먼저 실행됩니다.
+        emo는 1번 function 에서 페이지 이동되게 했음요~
+      */
+
+      // 1. DOM이 생성되면 실행(window.onload 보다 먼저 실행됨)
+      document.addEventListener("DOMContentLoaded", function () {
+        // window.onload 보다 먼저 실행
+        console.log("DOMContentLoaded");
+        document.location.href = "./home.html";
+      });
+
+      // 2. 모든 요소들이 로드가 완료되면 실행됨
+      window.onload = function () {
+        console.log("window.onload");
+        // document.location.href = "./home.html";
+      };
     </script>
   </head>
   <body>
-    <!-- <header data-include="./header.html"></header> -->
-    <header>
-      <nav>
-          <ul>
-              <li><a href="./home.html">Home</a></li>
-              <li><a href="./user/login.html">Sign in</a></li>
-              <li><a href="./user/register.html">Sign up</a></li>
-          </ul>
-      </nav>
-    </header>
-
-    <main>
-      <section>
-        <h1>Articles</h1>
-        <article>
-          <h2>Article1</h2>
-          <p>Contents....</p>
-        </article>
-        <article>
-          <h2>Article2</h2>
-          <p>Contents....</p>
-        </article>
-        <article>
-          <h2>Article3</h2>
-          <p>Contents....</p>
-        </article>
-      </section>
-      
-      <aside>
-        Aside
-      </aside>
-    </main>
-
-    <footer>
-        Footer
-    </footer>    
   </body>
 </html>

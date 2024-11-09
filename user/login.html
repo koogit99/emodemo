@@ -6,11 +6,14 @@
       // https://codingbroker.tistory.com/62
       function getUser() {
         document.getElementById("userInfo").innerText = "";
-        console.log(document.getElementById("id").innerText);
+        console.log(document.getElementById("id").innerText)
+        
         if (!document.getElementById("id").innerText) {
           // !는 not
           alert("id 넣으세요");
+          return; // 아래 줄에 있는 코드 전부를 실행하지 않고 return 줄에서 끝내라는 용도임
         }
+
         const config = {
           method: "get",
         };
