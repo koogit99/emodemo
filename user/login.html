@@ -1,44 +1,62 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>emodemo</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2mo-로그인</title>
+    <link rel="stylesheet" type="text/css" href="../common/loginStyle.css" />
     <script>
       // https://codingbroker.tistory.com/62
       function getUser() {
-        document.getElementById("userInfo").innerText = "";
-        console.log(document.getElementById("id").innerText);
+        const inputId = document.getElementById("id").value.trim(); // 입력된 id값
+        const inputPwd = document.getElementById("pwd").value.trim(); // 입력된 pwd값
 
-        if (!document.getElementById("id").innerText) {
+        // alert1 : id가 없으면 입력해라.
+        if (!inputId) {
           // !는 not
-          alert("id 넣으세요");
+          alert("id를 입력해주세요");
           return; // 아래 줄에 있는 코드 전부를 실행하지 않고 return 줄에서 끝내라는 용도임
         }
 
         const config = {
           method: "get",
         };
-        fetch("https://jsonplaceholder.typicode.com/users/1", config)
+        // url에서 users/뒤에 id에 따라 해당 id의 정보가 불러와지더라.. 그래서 동적url 만들어줌
+        const apiUrl = `https://jsonplaceholder.typicode.com/users/${inputId}`;
+        fetch(apiUrl, config) // API 요청
           .then((response) => {
-            // console.log(response);
+            console.log(response);
             return response.json();
           })
           .then((data) => {
             console.log("결과:", data);
-            const name = document.createElement("div");
-            const email = document.createElement("div");
-            const phone = document.createElement("div");
-            name.textContent = data.name;
-            email.textContent = data.email;
-            phone.textContent = data.phone;
-            const userInfo = document.getElementById("userInfo");
-            userInfo.appendChild(name);
-            userInfo.appendChild(email);
-            userInfo.appendChild(phone);
+            console.log("id :", data.id);
+
+            // 로그인 성공 여부 판단하기 (입력된 id와 API)
+            if (parseInt(inputId) == data.id) {
+              alert("로그인에 성공했습니다!");
+
+              // 기존 사용자 정보 초기화
+              const userInfo = document.getElementById("userInfo");
+              userInfo.innerHTML = ""; // 초기화
+
+              // 로그인 정보 확인용
+              const name = document.createElement("div");
+              const email = document.createElement("div");
+              const phone = document.createElement("div");
+              name.textContent = data.name;
+              email.textContent = data.email;
+              phone.textContent = data.phone;
+              userInfo.appendChild(name);
+              userInfo.appendChild(email);
+              userInfo.appendChild(phone);
+            } else {
+              alert("로그인 실패: id가 유효하지 않습니다.");
+            }
           })
           .catch((error) => console.log("fetch 에러!"));
       }
     </script>
-    <link rel="stylesheet" type="text/css" href="../common/loginStyle.css" />
   </head>
   <body>
     <header>
@@ -59,8 +77,9 @@
     <div class="login-form">
       <!-- <label for="id">ID:</label><br /> -->
       <input type="text" id="id" name="fname" placeholder="Id" />
-      <!-- <label for="pw">PW:</label><br /> -->
-      <input type="text" id="pw" name="lname" placeholder="Password" />
+      <!-- <label for="pwd">PWD:</label><br /> -->
+      <!-- 이모가 pw로 한거 pwd로 바꿈! -->
+      <input type="text" id="pwd" name="lname" placeholder="Password" />
       <button onclick="getUser()">Login</button>
     </div>
 
