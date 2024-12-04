@@ -54,9 +54,7 @@ main p {
   opacity: 0.7;
 }
 
-
-
-  /* login-form 스타일 */
+/* login-form 스타일 */
 .login-form {
   /* class 스타일은 class 이름 앞에 점(.)을 붙여 */
   display: flex;
@@ -91,3 +89,4 @@ main p {
 /* 버튼 hover 효과 */
 .login-form button:hover {
   background-color: #388e3c;
+}
