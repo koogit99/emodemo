@@ -38,14 +38,22 @@
           .catch((error) => console.log("fetch 에러!"));
       }
     </script>
+    <link rel="stylesheet" type="text/css" href="../common/loginStyle.css" />
   </head>
   <body>
-    <label for="id">ID:</label><br />
-    <input type="text" id="id" name="fname" /><br />
-    <label for="pw">PW:</label><br />
-    <input type="text" id="pw" name="lname" />
+    <main>
+      <h1>Log in</h1>
+      <p><a href="../user/signup.html">새로운 계정을 만드시겠어요?</a></p>
+      <!-- Sign up 링크로 연결 -->
+    </main>
+    <div class="login-form">
+      <!-- <label for="id">ID:</label><br /> -->
+      <input type="text" id="id" name="fname" placeholder="Id" />
+      <!-- <label for="pw">PW:</label><br /> -->
+      <input type="text" id="pw" name="lname" placeholder="Password" />
+      <button onclick="getUser()">Login</button>
+    </div>
 
-    <button onclick="getUser()">Login</button>
     <div id="userInfo"></div>
   </body>
 </html>

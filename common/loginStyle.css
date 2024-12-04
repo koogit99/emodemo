@@ -1,0 +1,93 @@
+/* 헤더 스타일 */
+header {
+  width: 95%;
+  margin: 10px;
+  padding: 20px 20px;
+  background-color: #ffffff; /* 필요에 따라 변경 */
+  display: flex;
+  justify-content: flex-end; /* 우측 정렬 */
+  align-items: center;
+}
+
+/* 네비게이션 바 스타일 */
+header nav ul {
+  list-style: none; /* 불릿 포인트 제거 */
+  margin: 0;
+  padding: 0;
+  display: flex; /* 가로 배치 */
+}
+
+/* 각 링크 아이템 스타일 */
+header nav ul li {
+  margin-left: 20px; /* 링크 사이 간격 조절 */
+}
+
+/* 링크 스타일 */
+header nav ul li a {
+  text-decoration: none; /* 밑줄 제거 */
+  color: #888; /* 텍스트 색상 */
+  font-weight: bold; /* 굵은 글씨 */
+}
+
+header nav ul li a:hover {
+  color: #555; /* 마우스 오버 시 색상 변화 */
+}
+
+/* main 스타일 */
+main {
+  display: flex;
+  flex-direction: column; /* 수직 정렬 */
+  align-items: center; /* 가로 가운데 정렬 */
+  justify-content: center; /* 세로 가운데 정렬 (필요 시) */
+  text-align: center; /* 텍스트 가운데 정렬 */
+  margin-top: 10px; /* 위쪽 공간 확보 */
+  margin-bottom: 10px; /* 아래쪽 공간 확보 */
+}
+main h1 {
+  font-size: 3rem;
+  margin-bottom: -10px; /* h1과 p 간 간격 */
+}
+
+main p {
+  color: green;
+  font-size: 1rem;
+  opacity: 0.7;
+}
+
+
+
+  /* login-form 스타일 */
+.login-form {
+  /* class 스타일은 class 이름 앞에 점(.)을 붙여 */
+  display: flex;
+  flex-direction: column; /* 수직 정렬 */
+  align-items: center; /* 가로 가운데 정렬 */
+  gap: 15px; /* 각 input과 버튼 사이 간격 */
+  margin-top: 20px; /* 위쪽 공간 확보 */
+}
+
+.login-form input {
+  width: 250px; /* 가로 길이 */
+  padding: 12px; /* 내부 여백 */
+  font-size: 1rem; /* 텍스트 크기 */
+  border: 1px solid #ccc; /* 테두리 색상 */
+  border-radius: 3px; /* 둥근 모서리 */
+  opacity: 0.8;
+}
+
+.login-form button {
+  width: 75px;
+  padding: 10px;
+  font-size: 1rem;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer; /* 마우스를 올렸을 때 손 모양 */
+  margin-right: -200px;
+  opacity: 0.8;
+}
+
+/* 버튼 hover 효과 */
+.login-form button:hover {
+  background-color: #388e3c;
