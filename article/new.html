@@ -1,1 +1,82 @@
-<!--  ! + tab 키     -->
+<!--  ! + tab 키  html 기본소스 단축키  : -->
+<!-- 주석 (ctrl + /)  -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2mo-Article 등록</title>
+    <link rel="stylesheet" type="text/css" href="../common/signupStyle.css" />
+    <script>
+      function createArticle() {
+        const inputName = document.getElementById("username").value.trim(); // 로그인한 사용자의 username 기본 설정되어야 함.
+        const inputTitle = document.getElementById("title").value.trim();
+        const inputContents = document.getElementById("contents").value.trim();
+        const type = 'public'; // 기본 값은 public 으로! 나중에 사용자가 공개/비공개 중 선택 가능하도록 수정합시다.
+
+        if (!inputTitle) {
+          alert("Title 입력해주세요");
+          document.getElementById("title").focus();
+          return;
+        }
+        if (!inputContents) {
+          alert("contents 입력해주세요");
+          document.getElementById("contents").focus();
+          return;
+        }
+        // 로그인한 사용자의 username 기본 설정되어 있도록 나중에 수정합니다.
+        if (!inputName) {
+          alert("Username을 입력해주세요");
+          document.getElementById("username").focus();
+          return;
+        }
+
+        const config = {
+          method: "POST",
+          headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            title: inputName,
+            contents: inputContents,
+            username: inputName,
+            type: type || 'public' // 혹시 type 값이 없을 경우는 'public' 으로 설정한다.
+          }),          
+        };
+        const apiUrl = 'http://localhost:3000/api/articles/add';
+        fetch(apiUrl, config) // API 요청
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("결과:", data);
+            if (data.ok) {
+              alert("Article 등록 성공!");
+              // list 페이지로 이동되어야 합니다.
+            } else {
+              alert("Article 등록 실패!");
+            }
+          })
+          .catch((error) => console.log("fetch 에러!", error));
+      }
+    </script>    
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="../home.html">Home</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <h1>Sign up</h1>
+    </main>
+    <div class="signup-form">
+      <input id="title" type="text" placeholder="Article Title" />
+      <textarea id="contents" cols="50" rows="10" placeholder="Write your article"></textarea>
+      <input id="username" type="text" placeholder="Username" />
+      <button onclick="createArticle()">Publish Article</button>
+    </div>
+  </body>
+</html>
