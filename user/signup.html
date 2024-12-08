@@ -8,6 +8,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>2mo-회원가입</title>
     <link rel="stylesheet" type="text/css" href="../common/signupStyle.css" />
+    <script>
+      function createUser() {
+        const inputName = document.getElementById("username").value.trim(); // 입력된 id값
+        const inputEmail = document.getElementById("email").value.trim(); // 입력된 pwd값
+        const inputPwd = document.getElementById("pwd").value.trim(); // 입력된 pwd값
+
+        if (!inputName) {
+          alert("Username을 입력해주세요");
+          document.getElementById("username").focus();
+          return;
+        }
+        if (!inputEmail) {
+          alert("Email 입력해주세요");
+          document.getElementById("email").focus();
+          return;
+        }
+        if (!inputPwd) {
+          alert("Password를 입력해주세요");
+          document.getElementById("pwd").focus();
+          return;
+        }
+
+        const formData = new FormData();
+        formData.append('username', inputName);
+        formData.append('email', inputEmail);
+        formData.append('password', inputPwd);
+
+        const config = {
+          method: "POST",
+          headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+          },
+          // body: formData,          
+          body: JSON.stringify({
+            username: 'admin',
+            email: 'admin@test.com',
+            password: '1234',
+          }),          
+        };
+        const apiUrl = 'http://localhost:3000/api/users/add';
+        fetch(apiUrl, config) // API 요청
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("결과:", data);
+          })
+          .catch((error) => console.log("fetch 에러!", error));
+      }
+    </script>    
   </head>
   <body>
     <header>
@@ -25,10 +74,12 @@
       <p><a href="../user/login.html">이미 계정이 있으신가요?</a></p>
     </main>
     <div class="signup-form">
-      <input id="uName" type="text" placeholder="Username" />
-      <input id="id" type="text" placeholder="Id" />
+      <input id="username" type="text" placeholder="Username" />
+      <input id="email" type="text" placeholder="Email" />
       <input id="pwd" type="password" placeholder="Password" />
-      <button id="login-btn">Sign up</button>
+      <button onclick="createUser()">Sign up</button>
+
+
       <div id="userName"></div>
       <!-- 확인용! 나중에 삭제 -->
       <div id="userId"></div>
@@ -36,6 +87,6 @@
       <div id="userPwd"></div>
       <!-- 확인용! 나중에 삭제 -->
     </div>
-    <script src="./signup.js"></script>
+    <!-- <script src="./signup.js"></script> -->
   </body>
 </html>
