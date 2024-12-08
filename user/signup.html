@@ -30,22 +30,16 @@
           return;
         }
 
-        const formData = new FormData();
-        formData.append('username', inputName);
-        formData.append('email', inputEmail);
-        formData.append('password', inputPwd);
-
         const config = {
           method: "POST",
           headers: {
             'Accept': 'application/json, text/plain, */*',
             'Content-Type': 'application/json'
           },
-          // body: formData,          
           body: JSON.stringify({
-            username: 'admin',
-            email: 'admin@test.com',
-            password: '1234',
+            username: inputName,
+            email: inputEmail,
+            password: inputPwd,
           }),          
         };
         const apiUrl = 'http://localhost:3000/api/users/add';
@@ -53,6 +47,11 @@
           .then((response) => response.json())
           .then((data) => {
             console.log("결과:", data);
+            if (data.ok) {
+              alert("사용자 등록 성공!");
+            } else {
+              alert("사용자 등록 실패!");
+            }
           })
           .catch((error) => console.log("fetch 에러!", error));
       }
